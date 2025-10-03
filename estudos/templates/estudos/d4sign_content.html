@@ -1,0 +1,168 @@
+{% extends 'estudos/base.html' %}
+
+{% block title %}Guia da API D4Sign{% endblock %}
+
+{% block content %}
+  <div class="jumbotron" style="background: linear-gradient(135deg, #1a2940 0%, #2c4469 100%); color: white;">
+    <h1 class="display-4"><i class="fas fa-file-signature"></i> Guia de Estudos: API da D4Sign</h1>
+    <p class="lead">Aprenda a automatizar o envio e a gestão de documentos para assinatura eletrônica, integrando seu sistema com a D4Sign.</p>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <h2 class="section-title">Conceitos Fundamentais</h2>
+      
+      <div id="d4sign-accordion">
+
+        <div class="card mb-2">
+          <div class="card-header"><h5 class="mb-0"><button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne">O que é a API da D4Sign?</button></h5></div>
+          <div id="collapseOne" class="collapse show" data-parent="#d4sign-accordion">
+            <div class="card-body">
+              <p>A API da D4Sign permite que você integre a funcionalidade de assinatura eletrônica diretamente em seus próprios sistemas. Em vez de fazer o upload manual de documentos e adicionar signatários no painel da D4Sign, você pode fazer tudo isso via código.</p>
+              <p>O fluxo principal de trabalho geralmente envolve:</p>
+              <ol>
+                <li>Fazer o upload de um documento (PDF, DOCX).</li>
+                <li>Adicionar os signatários (as pessoas que precisam assinar).</li>
+                <li>Disparar o envio do documento para que os signatários recebam o link para assinar por e-mail.</li>
+                <li>Receber notificações (via Webhooks) quando o documento é assinado.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-2">
+          <div class="card-header"><h5 class="mb-0"><button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo">Autenticação (Token & Crypt-Key)</button></h5></div>
+          <div id="collapseTwo" class="collapse" data-parent="#d4sign-accordion">
+            <div class="card-body">
+              <p>A autenticação na API da D4Sign é baseada em duas chaves que você encontra no seu painel de desenvolvedor:</p>
+              <ul>
+                <li><strong><code style="color: green;">TOKEN</code>:</strong> Uma chave de acesso que identifica sua conta em todas as requisições.</li>
+                <li><strong><code style="color: green;">CRYPT-KEY</code>:</strong> Uma chave usada para a criptografia e segurança de certas operações.</li>
+              </ul>
+              <p>Diferente do OAuth, essas chaves são estáticas. Você deve enviá-las como parâmetros em **todas as suas requisições** para a API.</p>
+              <h6>Exemplo de como as chaves são enviadas (como parâmetros de query string):</h6>
+              <pre><code>https://api.d4sign.com.br/api/v1/documents?token-api=SEU_TOKEN&crypt-key=SUA_CRYPT_KEY</code></pre>
+              <div class="alert alert-warning"><strong>Segurança:</strong> Assim como a chave do Gemini, essas chaves são secretas e devem ser guardadas de forma segura em seu projeto (usando um arquivo <code>.env</code>, por exemplo).</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-2">
+          <div class="card-header"><h5 class="mb-0"><button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree">Exemplo: Enviar um Documento para Assinatura</button></h5></div>
+          <div id="collapseThree" class="collapse" data-parent="#d4sign-accordion">
+            <div class="card-body">
+              <p>O processo de enviar um documento geralmente envolve 3 passos via API: criar o documento no cofre, fazer o upload do arquivo e, por fim, cadastrar os signatários e enviar.</p>
+              <h6>Exemplo de Código Python (usando `requests`):</h6>
+              <p>Este exemplo faz o upload de um arquivo PDF e o envia para um signatário.</p>
+              <pre><code>import requests
+import json
+
+TOKEN = "SEU_TOKEN_API"
+CRYPT_KEY = "SUA_CRYPT_KEY"
+UUID_COFRE = "UUID_DO_SEU_COFRE" # Você pega isso no painel D4Sign
+
+def enviar_documento_d4sign(caminho_arquivo, email_signatario, nome_signatario):
+    # 1. Faz o upload do arquivo
+    url_upload = f"https://api.d4sign.com.br/api/v1/documents/{UUID_COFRE}/upload"
+    
+    params = {'token-api': TOKEN, 'crypt-key': CRYPT_KEY}
+    files = {'file': open(caminho_arquivo, 'rb')}
+    
+    response_upload = requests.post(url_upload, params=params, files=files)
+    
+    if response_upload.status_code != 200:
+        print("Erro no upload:", response_upload.text)
+        return None
+        
+    uuid_documento = response_upload.json()['uuid']
+    print(f"Documento criado com UUID: {uuid_documento}")
+    
+    # 2. Adiciona os signatários e envia para assinatura
+    url_final = f"https://api.d4sign.com.br/api/v1/documents/{uuid_documento}/sendtosigner"
+    
+    payload = {
+        "signers": [
+            {
+                "email": email_signatario,
+                "act": "1", # 1 = Assinar
+                "name": nome_signatario,
+                "foreign": "0",
+                "certificadoicpbr": "0"
+            }
+        ]
+    }
+    
+    response_final = requests.post(url_final, params=params, data=json.dumps(payload))
+    
+    if response_final.status_code == 200:
+        print("Documento enviado para assinatura com sucesso!")
+        return response_final.json()
+    else:
+        print("Erro ao enviar para assinatura:", response_final.text)
+        return None
+
+# Como usar:
+# enviar_documento_d4sign('caminho/para/seu/contrato.pdf', 'cliente@email.com', 'Nome do Cliente')</code></pre>
+              <div class="alert alert-info">Note que o upload de arquivos usa o formato <code style="color: black;">multipart/form-data</code> (tratado pela biblioteca <code style="color: black;">requests</code> com o parâmetro <code style="color: black;">files</code>), que é diferente das APIs que usam apenas JSON.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card mb-2">
+          <div class="card-header"><h5 class="mb-0"><button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour">Recebendo Notificações com Webhooks</button></h5></div>
+          <div id="collapseFour" class="collapse" data-parent="#d4sign-accordion">
+            <div class="card-body">
+              <p>Em vez de ficar perguntando para a API "o documento já foi assinado?" a cada minuto (polling), a melhor prática é usar <strong>Webhooks</strong>.</p>
+              <p>Você configura uma URL do seu sistema (um endpoint) no painel da D4Sign. Sempre que um evento importante acontecer (ex: um signatário assinar, o documento ser finalizado), a D4Sign enviará uma requisição <code>POST</code> para a sua URL com os detalhes do evento em formato JSON.</p>
+              <h6>Exemplo de JSON que seu sistema receberia de um Webhook:</h6>
+              <pre><code>{
+    "uuid_doc": "a1b2c3d4-e5f6-g7h8-i9j0-k1l2m3n4o5p6",
+    "doc_status": "2",
+    "doc_status_name": "Assinado",
+    "signer_name": "Nome do Cliente",
+    "signer_email": "cliente@email.com",
+    "dt_signed": "2025-10-03 11:50:00"
+}</code></pre>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="sticky-top" style="top: 20px;">
+        <div class="card mb-4">
+          <div class="card-header bg-dark text-white"><i class="fas fa-link"></i> Links Úteis</div>
+          <div class="list-group list-group-flush">
+            <a href="https://ajuda.d4sign.com.br/introdu%C3%A7%C3%A3o-%C3%A0-api-d4sign-leia-antes-de-come%C3%A7ar" target="_blank" class="list-group-item list-group-item-action font-weight-bold">Portal do Desenvolvedor</a>
+            <a href="https://docapi.d4sign.com.br/reference/listar-cofres" target="_blank" class="list-group-item list-group-item-action">Referência Completa da API</a>
+            <a href="https://docapi.d4sign.com.br/docs/webhook-postback" target="_blank" class="list-group-item list-group-item-action">Documentação de Webhooks</a>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-header bg-dark text-white"><i class="fas fa-lightbulb"></i> Conceitos-Chave</div>
+          <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                  <strong>Cofre (Safe)</strong>
+                  <small class="d-block text-muted">É a "pasta" onde seus documentos são armazenados na D4Sign. Todo upload é feito para um cofre específico.</small>
+              </li>
+              <li class="list-group-item">
+                  <strong>Signatário (Signer)</strong>
+                  <small class="d-block text-muted">A pessoa que precisa assinar o documento, identificada pelo seu e-mail.</small>
+              </li>
+              <li class="list-group-item">
+                  <strong>Webhook</strong>
+                  <small class="d-block text-muted">Uma URL no seu sistema que recebe notificações automáticas da D4Sign sobre o status dos documentos.</small>
+              </li>
+              <li class="list-group-item">
+                  <strong>Token & Crypt-Key</strong>
+                  <small class="d-block text-muted">Suas credenciais de acesso fixas para autenticar todas as chamadas à API.</small>
+              </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

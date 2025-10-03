@@ -1,0 +1,169 @@
+{% extends 'estudos/base.html' %}
+
+{% block title %}Guia da API RD Station{% endblock %}
+
+{% block content %}
+  <div class="jumbotron" style="background: linear-gradient(135deg, #0d3d5e 0%, #0c72ab 100%); color: white;">
+    <h1 class="display-4"><i class="fas fa-chart-line"></i> Guia de Estudos: API do RD Station</h1>
+    <p class="lead">Aprenda a integrar seus sistemas com a principal plataforma de automação de marketing do Brasil, enviando leads e gerenciando oportunidades via API.</p>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <h2 class="section-title">Conceitos Fundamentais</h2>
+      
+      <div id="rd-accordion">
+
+        <div class="card mb-2">
+          <div class="card-header"><h5 class="mb-0"><button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne">O que é a API do RD Station?</button></h5></div>
+          <div id="collapseOne" class="collapse show" data-parent="#rd-accordion">
+            <div class="card-body">
+              <p>A API do RD Station é uma interface que permite que seus sistemas (como seu site Django, um ERP, etc.) conversem diretamente com a plataforma da RD Station. Com ela, você pode automatizar tarefas como:</p>
+              <ul>
+                <li><strong>Criar e atualizar leads:</strong> Enviar contatos de um formulário do seu site diretamente para a base da RD.</li>
+                <li><strong>Marcar vendas e oportunidades perdidas:</strong> Atualizar o status de uma negociação no CRM da RD quando uma venda é fechada no seu sistema.</li>
+                <li><strong>Segmentar contatos:</strong> Adicionar ou remover tags de um lead com base em ações que ele realiza no seu sistema.</li>
+              </ul>
+              <p>A comunicação é feita através de requisições HTTP para endpoints específicos, enviando e recebendo dados no formato JSON.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-2">
+          <div class="card-header"><h5 class="mb-0"><button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo">Autenticação via OAuth 2.0</button></h5></div>
+          <div id="collapseTwo" class="collapse" data-parent="#rd-accordion">
+            <div class="card-body">
+              <p>A API do RD Station usa o protocolo <strong>OAuth 2.0</strong>, um padrão de mercado para autorização segura. O fluxo é mais complexo que uma simples chave de API, mas muito mais seguro:</p>
+              <ol>
+                <li><strong>Obter Credenciais:</strong> Primeiro, você cria um aplicativo no painel da RD Station para obter um <code style="color: green">Client ID</code> e um <code style="color: green">Client Secret</code>.</li>
+                <li><strong>Gerar o Código de Autorização:</strong> O usuário autoriza seu aplicativo a acessar os dados dele, gerando um <code style="color: green">code</code>.</li>
+                <li><strong>Trocar o Código por Tokens:</strong> Seu sistema envia o <code style="color: green">Client ID</code>, <code style="color: green">Client Secret</code> e o <code style="color: green">code</code> para a RD e recebe de volta um <strong>Access Token</strong> e um <strong>Refresh Token</strong>.</li>
+                <li><strong>Fazer Chamadas:</strong> O <code style="color: green">Access Token</code> (que tem curta duração, geralmente algumas horas) é usado para autenticar todas as suas chamadas à API.</li>
+                <li><strong>Renovar o Acesso:</strong> Quando o <code style="color: green">Access Token</code> expira, você usa o <code style="color: green">Refresh Token</code> (de longa duração) para obter um novo <code style="color: green">Access Token</code> sem precisar da intervenção do usuário novamente.</li>
+              </ol>
+              <div class="alert alert-info">Em todas as requisições para a API, você deve enviar o Access Token no cabeçalho (Header) da requisição, assim: <code style="color: green">Authorization: Bearer SEU_ACCESS_TOKEN_AQUI</code>.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-2">
+          <div class="card-header"><h5 class="mb-0"><button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree">Exemplo: Enviando um Lead (Contato)</button></h5></div>
+          <div id="collapseThree" class="collapse" data-parent="#rd-accordion">
+            <div class="card-body">
+              <p>Esta é a operação mais comum. Para criar um novo lead, você envia uma requisição <code style="color: green">POST</code> para o endpoint de conversão. O corpo da requisição (payload) deve ser um JSON com os dados do lead.</p>
+              <h6>Exemplo de Código Python (usando a biblioteca `requests`):</h6>
+              <pre><code>import requests
+import json
+
+def enviar_lead_rd(access_token, nome, email, telefone):
+    url = "https://api.rd.services/platform/conversions"
+    
+    headers = {
+        "Authorization": f"Bearer {access_token}",
+        "Content-Type": "application/json"
+    }
+    
+    payload = {
+        "event_type": "CONVERSION",
+        "event_family": "CDP",
+        "payload": {
+            "conversion_identifier": "formulario-de-contato",
+            "name": nome,
+            "email": email,
+            "personal_phone": telefone,
+            "tags": ["django-site", "novo-lead"]
+        }
+    }
+    
+    response = requests.post(url, headers=headers, data=json.dumps(payload))
+    
+    if response.status_code == 200:
+        print("Lead enviado com sucesso!")
+        return response.json()
+    else:
+        print(f"Erro ao enviar lead: {response.status_code}")
+        print(response.text)
+        return None</code></pre>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card mb-2">
+          <div class="card-header"><h5 class="mb-0"><button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour">Exemplo: Marcando uma Venda no CRM</button></h5></div>
+          <div id="collapseFour" class="collapse" data-parent="#rd-accordion">
+            <div class="card-body">
+              <p>Se você usa o RD Station CRM, pode automatizar a atualização de negociações (deals). Por exemplo, para marcar uma oportunidade como "Ganha", você envia uma requisição <code style="color: green">PATCH</code> para o endpoint do deal específico.</p>
+               <h6>Exemplo de Código Python:</h6>
+              <pre><code>import requests
+import json
+
+def marcar_venda_rd(access_token, deal_id):
+    # O ID do estágio "Ganha" (Won) deve ser pego na sua conta da RD
+    id_estagio_ganho = "ID_DO_SEU_ESTAGIO_DE_VENDA_GANHA"
+    
+    url = f"https://api.rd.services/platform/deals/{deal_id}"
+    
+    headers = {
+        "Authorization": f"Bearer {access_token}",
+        "Content-Type": "application/json"
+    }
+    
+    payload = {
+        "deal_stage_id": id_estagio_ganho
+    }
+
+    response = requests.patch(url, headers=headers, data=json.dumps(payload))
+
+    if response.status_code == 200:
+        print("Venda marcada com sucesso!")
+        return response.json()
+    else:
+        print(f"Erro ao marcar venda: {response.status_code}")
+        return None</code></pre>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="sticky-top" style="top: 20px;">
+        <div class="card mb-4">
+          <div class="card-header bg-dark text-white"><i class="fas fa-link"></i> Links Úteis</div>
+          <div class="list-group list-group-flush">
+            <a href="https://developers.rdstation.com/" target="_blank" class="list-group-item list-group-item-action font-weight-bold">Portal do Desenvolvedor</a>
+            <a href="https://developers.rdstation.com/reference/autentica%C3%A7%C3%A3o" target="_blank" class="list-group-item list-group-item-action">Documentação de Autenticação</a>
+            <a href="https://developers.rdstation.com/reference/api-rd-station-doc" target="_blank" class="list-group-item list-group-item-action">Referência Completa da API</a>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-header bg-dark text-white"><i class="fas fa-lightbulb"></i> Conceitos-Chave</div>
+          <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                  <strong>Lead / Contato</strong>
+                  <small class="d-block text-muted">A pessoa que demonstrou interesse. É o registro central no Marketing.</small>
+              </li>
+              <li class="list-group-item">
+                  <strong>Evento de Conversão</strong>
+                  <small class="d-block text-muted">A ação que cria ou atualiza um lead (ex: preencher um formulário).</small>
+              </li>
+              <li class="list-group-item">
+                  <strong>Deal / Oportunidade</strong>
+                  <small class="d-block text-muted">Uma negociação em andamento no funil de vendas do CRM.</small>
+              </li>
+              <li class="list-group-item">
+                  <strong>Access Token</strong>
+                  <small class="d-block text-muted">Chave temporária (expira em horas) para autenticar suas requisições.</small>
+              </li>
+              <li class="list-group-item">
+                  <strong>Refresh Token</strong>
+                  <small class="d-block text-muted">Chave de longa duração usada para obter um novo Access Token quando o antigo expira.</small>
+              </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

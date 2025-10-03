@@ -1,0 +1,1105 @@
+	{
+  "perguntas": [
+    {
+      "id": 1,
+      "tema": "Django",
+      "pergunta": "O que é o Django?",
+      "opcoes": [
+        "Um framework web em Python baseado em MVT",
+        "Um banco de dados relacional",
+        "Um servidor HTTP independente"
+      ],
+      "resposta_correta": "Um framework web em Python baseado em MVT"
+    },
+    {
+      "id": 2,
+      "tema": "Django",
+      "pergunta": "Qual comando cria um novo projeto Django?",
+      "opcoes": [
+        "django-admin startproject nome_projeto",
+        "python manage.py runserver",
+        "django-admin startapp nome_app"
+      ],
+      "resposta_correta": "django-admin startproject nome_projeto"
+    },
+    {
+      "id": 3,
+      "tema": "Django",
+      "pergunta": "Qual comando cria um novo aplicativo em Django?",
+      "opcoes": [
+        "django-admin startapp nome_app",
+        "python manage.py createsuperuser",
+        "django-admin createapp nome_app"
+      ],
+      "resposta_correta": "django-admin startapp nome_app"
+    },
+    {
+      "id": 4,
+      "tema": "Django",
+      "pergunta": "Qual arquivo guarda as configurações principais do projeto Django?",
+      "opcoes": [
+        "settings.py",
+        "urls.py",
+        "views.py"
+      ],
+      "resposta_correta": "settings.py"
+    },
+    {
+      "id": 5,
+      "tema": "Django",
+      "pergunta": "Qual arquivo define as rotas de um projeto Django?",
+      "opcoes": [
+        "urls.py",
+        "views.py",
+        "models.py"
+      ],
+      "resposta_correta": "urls.py"
+    },
+    {
+      "id": 6,
+      "tema": "Django",
+      "pergunta": "Qual arquivo é usado para definir os modelos de banco de dados?",
+      "opcoes": [
+        "models.py",
+        "views.py",
+        "admin.py"
+      ],
+      "resposta_correta": "models.py"
+    },
+    {
+      "id": 7,
+      "tema": "Django",
+      "pergunta": "Qual arquivo é responsável pela lógica de negócio de cada rota?",
+      "opcoes": [
+        "views.py",
+        "models.py",
+        "settings.py"
+      ],
+      "resposta_correta": "views.py"
+    },
+    {
+      "id": 8,
+      "tema": "Django",
+      "pergunta": "Qual comando roda o servidor de desenvolvimento do Django?",
+      "opcoes": [
+        "python manage.py runserver",
+        "django-admin startserver",
+        "python manage.py startserver"
+      ],
+      "resposta_correta": "python manage.py runserver"
+    },
+    {
+      "id": 9,
+      "tema": "Django",
+      "pergunta": "Qual é o padrão de arquitetura usado no Django?",
+      "opcoes": [
+        "MVT (Model-View-Template)",
+        "MVC (Model-View-Controller)",
+        "MVVM (Model-View-ViewModel)"
+      ],
+      "resposta_correta": "MVT (Model-View-Template)"
+    },
+    {
+      "id": 10,
+      "tema": "Django",
+      "pergunta": "Qual comando cria as migrações no Django?",
+      "opcoes": [
+        "python manage.py makemigrations",
+        "python manage.py migrate",
+        "python manage.py createsuperuser"
+      ],
+      "resposta_correta": "python manage.py makemigrations"
+    },
+    {
+      "id": 11,
+      "tema": "Django",
+      "pergunta": "Qual comando aplica as migrações ao banco de dados?",
+      "opcoes": [
+        "python manage.py migrate",
+        "python manage.py makemigrations",
+        "python manage.py sqlmigrate"
+      ],
+      "resposta_correta": "python manage.py migrate"
+    },
+    {
+      "id": 12,
+      "tema": "Django",
+      "pergunta": "Qual comando cria um superusuário no Django?",
+      "opcoes": [
+        "python manage.py createsuperuser",
+        "django-admin superuser",
+        "python manage.py createadmin"
+      ],
+      "resposta_correta": "python manage.py createsuperuser"
+    },
+    {
+      "id": 13,
+      "tema": "Django",
+      "pergunta": "Como registrar um modelo para aparecer no Django Admin?",
+      "opcoes": [
+        "Registrando no admin.py",
+        "Registrando no views.py",
+        "Registrando no settings.py"
+      ],
+      "resposta_correta": "Registrando no admin.py"
+    },
+    {
+      "id": 14,
+      "tema": "Django",
+      "pergunta": "O que é o Django ORM?",
+      "opcoes": [
+        "Um mapeador objeto-relacional para banco de dados",
+        "Um servidor web embutido",
+        "Uma biblioteca para CSS"
+      ],
+      "resposta_correta": "Um mapeador objeto-relacional para banco de dados"
+    },
+    {
+      "id": 15,
+      "tema": "Django",
+      "pergunta": "Qual é a função do CSRF token?",
+      "opcoes": [
+        "Prevenir ataques de falsificação de requisições",
+        "Aumentar a velocidade do banco",
+        "Gerar logs de erros automaticamente"
+      ],
+      "resposta_correta": "Prevenir ataques de falsificação de requisições"
+    },
+    {
+      "id": 16,
+      "tema": "Django",
+      "pergunta": "Onde são configurados os arquivos estáticos em Django?",
+      "opcoes": [
+        "No settings.py",
+        "No urls.py",
+        "No views.py"
+      ],
+      "resposta_correta": "No settings.py"
+    },
+    {
+      "id": 17,
+      "tema": "Django",
+      "pergunta": "O que é um QuerySet no Django?",
+      "opcoes": [
+        "Uma coleção de objetos consultados no banco de dados",
+        "Um template base",
+        "Um campo de formulário"
+      ],
+      "resposta_correta": "Uma coleção de objetos consultados no banco de dados"
+    },
+    {
+      "id": 18,
+      "tema": "Django",
+      "pergunta": "Qual comando mostra todas as tabelas no banco de dados Django?",
+      "opcoes": [
+        "python manage.py showmigrations",
+        "python manage.py dbshell",
+        "python manage.py sqlmigrate"
+      ],
+      "resposta_correta": "python manage.py dbshell"
+    },
+    {
+      "id": 19,
+      "tema": "Django",
+      "pergunta": "Qual função renderiza templates no Django?",
+      "opcoes": [
+        "render()",
+        "redirect()",
+        "HttpResponse()"
+      ],
+      "resposta_correta": "render()"
+    },
+    {
+      "id": 20,
+      "tema": "Django",
+      "pergunta": "Qual é a função do arquivo manage.py?",
+      "opcoes": [
+        "Executar comandos administrativos do Django",
+        "Gerenciar estilos CSS",
+        "Gerar relatórios de log"
+      ],
+      "resposta_correta": "Executar comandos administrativos do Django"
+    },
+    {
+      "id": 21,
+      "tema": "Django",
+      "pergunta": "Como definir rotas específicas em um app Django?",
+      "opcoes": [
+        "Criando um arquivo urls.py dentro do app",
+        "Adicionando as rotas no models.py",
+        "Escrevendo as rotas no admin.py"
+      ],
+      "resposta_correta": "Criando um arquivo urls.py dentro do app"
+    },
+    {
+      "id": 22,
+      "tema": "Django",
+      "pergunta": "O que são middlewares no Django?",
+      "opcoes": [
+        "Camadas que processam requisições e respostas",
+        "Classes responsáveis por consultas no banco",
+        "Templates para reutilização de código"
+      ],
+      "resposta_correta": "Camadas que processam requisições e respostas"
+    },
+    {
+      "id": 23,
+      "tema": "Django",
+      "pergunta": "O que são contextos em templates Django?",
+      "opcoes": [
+        "Dicionários de dados passados da view para o template",
+        "Arquivos CSS aplicados a templates",
+        "Classes do Bootstrap aplicadas em HTML"
+      ],
+      "resposta_correta": "Dicionários de dados passados da view para o template"
+    },
+    {
+      "id": 24,
+      "tema": "Django",
+      "pergunta": "Qual é a diferença entre render() e redirect()?",
+      "opcoes": [
+        "render() carrega um template, redirect() redireciona para outra rota",
+        "Ambos redirecionam para outra página",
+        "redirect() carrega templates e render() redireciona"
+      ],
+      "resposta_correta": "render() carrega um template, redirect() redireciona para outra rota"
+    },
+    {
+      "id": 25,
+      "tema": "Django",
+      "pergunta": "O que são signals no Django?",
+      "opcoes": [
+        "Mecanismo para executar ações automáticas em eventos",
+        "Classes responsáveis por autenticação",
+        "Ferramenta para consultas no banco"
+      ],
+      "resposta_correta": "Mecanismo para executar ações automáticas em eventos"
+    },
+    {
+      "id": 26,
+      "tema": "Django",
+      "pergunta": "Como funciona o sistema de autenticação do Django?",
+      "opcoes": [
+        "Com usuários, permissões e sessões embutidos",
+        "Somente com tokens de autenticação",
+        "Usando apenas JWT nativamente"
+      ],
+      "resposta_correta": "Com usuários, permissões e sessões embutidos"
+    },
+    {
+      "id": 27,
+      "tema": "Django",
+      "pergunta": "Qual comando cria uma nova migração baseada em mudanças nos modelos?",
+      "opcoes": [
+        "python manage.py makemigrations",
+        "python manage.py migrate",
+        "python manage.py sqlflush"
+      ],
+      "resposta_correta": "python manage.py makemigrations"
+    },
+    {
+      "id": 28,
+      "tema": "Django",
+      "pergunta": "Qual comando aplica todas as migrações pendentes?",
+      "opcoes": [
+        "python manage.py migrate",
+        "python manage.py makemigrations",
+        "python manage.py sqlmigrate"
+      ],
+      "resposta_correta": "python manage.py migrate"
+    },
+    {
+      "id": 29,
+      "tema": "Django",
+      "pergunta": "O que é um ModelForm no Django?",
+      "opcoes": [
+        "Um formulário gerado automaticamente a partir de um modelo",
+        "Um modelo de tabela no banco de dados",
+        "Um formulário HTML sem validação"
+      ],
+      "resposta_correta": "Um formulário gerado automaticamente a partir de um modelo"
+    },
+    {
+      "id": 30,
+      "tema": "Django",
+      "pergunta": "O que são Generic Views no Django?",
+      "opcoes": [
+        "Views prontas para operações comuns como listar e criar objetos",
+        "Consultas SQL diretas",
+        "Bibliotecas externas para templates"
+      ],
+      "resposta_correta": "Views prontas para operações comuns como listar e criar objetos"
+    },
+    {
+      "id": 31,
+      "tema": "Django",
+      "pergunta": "Qual é a diferença entre Function-Based Views e Class-Based Views?",
+      "opcoes": [
+        "FBV usam funções, CBV usam classes para definir lógica da view",
+        "FBV usam classes, CBV usam funções",
+        "Ambas funcionam apenas com funções"
+      ],
+      "resposta_correta": "FBV usam funções, CBV usam classes para definir lógica da view"
+    },
+    {
+      "id": 32,
+      "tema": "Django",
+      "pergunta": "O que é o Django Rest Framework?",
+      "opcoes": [
+        "Um framework para criar APIs com Django",
+        "Uma biblioteca para estilizar templates",
+        "Um sistema de templates avançado"
+      ],
+      "resposta_correta": "Um framework para criar APIs com Django"
+    },
+    {
+      "id": 33,
+      "tema": "Django",
+      "pergunta": "Qual é a função do arquivo asgi.py em projetos Django recentes?",
+      "opcoes": [
+        "Configurar a interface assíncrona do servidor",
+        "Configurar o banco de dados",
+        "Renderizar templates"
+      ],
+      "resposta_correta": "Configurar a interface assíncrona do servidor"
+    },
+    {
+      "id": 34,
+      "tema": "Django",
+      "pergunta": "O que são Fixtures no Django?",
+      "opcoes": [
+        "Arquivos para carregar dados iniciais no banco",
+        "Ferramentas de autenticação",
+        "Templates de formulários"
+      ],
+      "resposta_correta": "Arquivos para carregar dados iniciais no banco"
+    },
+    {
+      "id": 35,
+      "tema": "Django",
+      "pergunta": "Como ativar a internacionalização em Django?",
+      "opcoes": [
+        "Configurando USE_I18N no settings.py",
+        "Usando apenas HTML",
+        "Ativando o CSRF token"
+      ],
+      "resposta_correta": "Configurando USE_I18N no settings.py"
+    },
+    {
+      "id": 36,
+      "tema": "Django",
+      "pergunta": "Como servir arquivos media (uploads de usuários) no Django?",
+      "opcoes": [
+        "Configurando MEDIA_URL e MEDIA_ROOT no settings.py",
+        "Usando STATIC_URL",
+        "Registrando os arquivos em urls.py como templates"
+      ],
+      "resposta_correta": "Configurando MEDIA_URL e MEDIA_ROOT no settings.py"
+    },
+    {
+      "id": 37,
+      "tema": "Django",
+      "pergunta": "Qual pacote é usado frequentemente para autenticação social no Django?",
+      "opcoes": [
+        "django-allauth",
+        "django-rest-framework",
+        "django-crispy-forms"
+      ],
+      "resposta_correta": "django-allauth"
+    },
+    {
+      "id": 38,
+      "tema": "Django",
+      "pergunta": "O que é o arquivo wsgi.py em um projeto Django?",
+      "opcoes": [
+        "Configuração para servidores WSGI rodarem a aplicação",
+        "Arquivo de templates padrão",
+        "Arquivo para definir models"
+      ],
+      "resposta_correta": "Configuração para servidores WSGI rodarem a aplicação"
+    },
+    {
+      "id": 39,
+      "tema": "Django",
+      "pergunta": "O que são permissões no Django?",
+      "opcoes": [
+        "Regras para definir acesso de usuários a recursos",
+        "Classes de formulários",
+        "Configurações de banco de dados"
+      ],
+      "resposta_correta": "Regras para definir acesso de usuários a recursos"
+    },
+    {
+      "id": 40,
+      "tema": "Django",
+      "pergunta": "Como o Django trata sessões de usuário?",
+      "opcoes": [
+        "Usando cookies e banco de dados para armazenar sessões",
+        "Somente com JWT",
+        "Apenas com variáveis globais"
+      ],
+      "resposta_correta": "Usando cookies e banco de dados para armazenar sessões"
+    },
+    {
+      "id": 41,
+      "tema": "Django",
+      "pergunta": "O que é o Django?",
+      "opcoes": [
+        "Um framework web em Python baseado em MVT",
+        "Um banco de dados relacional",
+        "Um sistema operacional para servidores"
+      ],
+      "resposta_correta": "Um framework web em Python baseado em MVT"
+    },
+    {
+      "id": 42,
+      "tema": "Django",
+      "pergunta": "Qual comando cria um novo projeto Django?",
+      "opcoes": [
+        "django-admin startproject nome_projeto",
+        "python manage.py runserver",
+        "django-admin startapp nome_app"
+      ],
+      "resposta_correta": "django-admin startproject nome_projeto"
+    },
+    {
+      "id": 43,
+      "tema": "Django",
+      "pergunta": "Qual arquivo é responsável pelas configurações principais de um projeto Django?",
+      "opcoes": [
+        "settings.py",
+        "urls.py",
+        "views.py"
+      ],
+      "resposta_correta": "settings.py"
+    },
+    {
+      "id": 44,
+      "tema": "Django",
+      "pergunta": "Qual é o padrão arquitetural utilizado pelo Django?",
+      "opcoes": [
+        "MVC",
+        "MVT",
+        "MVVM"
+      ],
+      "resposta_correta": "MVT"
+    },
+    {
+      "id": 45,
+      "tema": "Django",
+      "pergunta": "Qual comando cria uma nova aplicação dentro de um projeto Django?",
+      "opcoes": [
+        "django-admin startapp nome_app",
+        "django-admin newapp nome_app",
+        "python manage.py runapp nome_app"
+      ],
+      "resposta_correta": "django-admin startapp nome_app"
+    },
+    {
+      "id": 46,
+      "tema": "Django",
+      "pergunta": "Qual comando inicia o servidor de desenvolvimento Django?",
+      "opcoes": [
+        "python manage.py runserver",
+        "django-admin startserver",
+        "python run app.py"
+      ],
+      "resposta_correta": "python manage.py runserver"
+    },
+    {
+      "id": 47,
+      "tema": "Django",
+      "pergunta": "Onde ficam as configurações de rotas no Django?",
+      "opcoes": [
+        "urls.py",
+        "views.py",
+        "routes.py"
+      ],
+      "resposta_correta": "urls.py"
+    },
+    {
+      "id": 48,
+      "tema": "Django",
+      "pergunta": "Qual comando aplica as migrações no banco de dados?",
+      "opcoes": [
+        "python manage.py migrate",
+        "python manage.py makemigrations",
+        "python manage.py sqlmigrate"
+      ],
+      "resposta_correta": "python manage.py migrate"
+    },
+    {
+      "id": 49,
+      "tema": "Django",
+      "pergunta": "Qual arquivo define os modelos de dados no Django?",
+      "opcoes": [
+        "models.py",
+        "database.py",
+        "schemas.py"
+      ],
+      "resposta_correta": "models.py"
+    },
+    {
+      "id": 50,
+      "tema": "Django",
+      "pergunta": "Qual função retorna uma resposta HTTP simples no Django?",
+      "opcoes": [
+        "HttpResponse",
+        "render_template",
+        "return_json"
+      ],
+      "resposta_correta": "HttpResponse"
+    },
+
+    {
+      "id": 51,
+      "tema": "Bootstrap 4",
+      "pergunta": "O que é o Bootstrap 4?",
+      "opcoes": [
+        "Um framework CSS para design responsivo",
+        "Um banco de dados NoSQL",
+        "Um sistema de templates do Django"
+      ],
+      "resposta_correta": "Um framework CSS para design responsivo"
+    },
+    {
+      "id": 52,
+      "tema": "Bootstrap 4",
+      "pergunta": "Qual classe cria um container com largura fixa?",
+      "opcoes": [
+        "container",
+        "container-fluid",
+        "container-fixed"
+      ],
+      "resposta_correta": "container"
+    },
+    {
+      "id": 53,
+      "tema": "Bootstrap 4",
+      "pergunta": "Qual classe cria um container que ocupa toda a largura disponível?",
+      "opcoes": [
+        "container-fluid",
+        "container",
+        "full-container"
+      ],
+      "resposta_correta": "container-fluid"
+    },
+    {
+      "id": 54,
+      "tema": "Bootstrap 4",
+      "pergunta": "Qual sistema de grid o Bootstrap utiliza?",
+      "opcoes": [
+        "12 colunas",
+        "16 colunas",
+        "10 colunas"
+      ],
+      "resposta_correta": "12 colunas"
+    },
+    {
+      "id": 55,
+      "tema": "Bootstrap 4",
+      "pergunta": "Qual classe é usada para criar botões básicos no Bootstrap?",
+      "opcoes": [
+        "btn",
+        "button",
+        "btn-default"
+      ],
+      "resposta_correta": "btn"
+    },
+    {
+      "id": 56,
+      "tema": "Bootstrap 4",
+      "pergunta": "Qual classe deixa o botão azul no Bootstrap 4?",
+      "opcoes": [
+        "btn-primary",
+        "btn-blue",
+        "btn-info"
+      ],
+      "resposta_correta": "btn-primary"
+    },
+    {
+      "id": 57,
+      "tema": "Bootstrap 4",
+      "pergunta": "Qual classe aplica margens em Bootstrap 4?",
+      "opcoes": [
+        "m-",
+        "p-",
+        "space-"
+      ],
+      "resposta_correta": "m-"
+    },
+    {
+      "id": 58,
+      "tema": "Bootstrap 4",
+      "pergunta": "Qual classe aplica padding em Bootstrap 4?",
+      "opcoes": [
+        "p-",
+        "m-",
+        "pad-"
+      ],
+      "resposta_correta": "p-"
+    },
+    {
+      "id": 59,
+      "tema": "Bootstrap 4",
+      "pergunta": "Qual classe centraliza texto?",
+      "opcoes": [
+        "text-center",
+        "center-text",
+        "align-center"
+      ],
+      "resposta_correta": "text-center"
+    },
+    {
+      "id": 60,
+      "tema": "Bootstrap 4",
+      "pergunta": "Qual classe deixa o texto em negrito?",
+      "opcoes": [
+        "font-weight-bold",
+        "text-strong",
+        "bold"
+      ],
+      "resposta_correta": "font-weight-bold"
+    },
+    {
+      "id": 61,
+      "tema": "Bootstrap 4",
+      "pergunta": "Qual componente cria uma barra de navegação responsiva?",
+      "opcoes": [
+        "navbar",
+        "nav",
+        "menu"
+      ],
+      "resposta_correta": "navbar"
+    },
+    {
+      "id": 62,
+      "tema": "Bootstrap 4",
+      "pergunta": "Como criar uma tabela responsiva?",
+      "opcoes": [
+        "table-responsive",
+        "responsive-table",
+        "table-fluid"
+      ],
+      "resposta_correta": "table-responsive"
+    },
+    {
+      "id": 63,
+      "tema": "Bootstrap 4",
+      "pergunta": "Qual componente é usado para criar cartões (cards)?",
+      "opcoes": [
+        "card",
+        "panel",
+        "box"
+      ],
+      "resposta_correta": "card"
+    },
+    {
+      "id": 64,
+      "tema": "Bootstrap 4",
+      "pergunta": "Qual classe aplica alertas de sucesso, erro ou aviso?",
+      "opcoes": [
+        "alert",
+        "notification",
+        "message"
+      ],
+      "resposta_correta": "alert"
+    },
+    {
+      "id": 65,
+      "tema": "Bootstrap 4",
+      "pergunta": "Qual classe cria modais (pop-ups) no Bootstrap?",
+      "opcoes": [
+        "modal",
+        "popup",
+        "dialog"
+      ],
+      "resposta_correta": "modal"
+    },
+    {
+      "id": 66,
+      "tema": "Bootstrap 4",
+      "pergunta": "Como criar um carrossel de imagens?",
+      "opcoes": [
+        "carousel",
+        "slider",
+        "gallery"
+      ],
+      "resposta_correta": "carousel"
+    },
+    {
+      "id": 67,
+      "tema": "Bootstrap 4",
+      "pergunta": "Qual componente cria abas (tabs) na interface?",
+      "opcoes": [
+        "nav-tabs",
+        "tabs",
+        "menu-tabs"
+      ],
+      "resposta_correta": "nav-tabs"
+    },
+    {
+      "id": 68,
+      "tema": "Bootstrap 4",
+      "pergunta": "Qual classe cria tooltips?",
+      "opcoes": [
+        "tooltip",
+        "tip",
+        "hover-text"
+      ],
+      "resposta_correta": "tooltip"
+    },
+    {
+      "id": 69,
+      "tema": "Bootstrap 4",
+      "pergunta": "Qual classe cria popovers?",
+      "opcoes": [
+        "popover",
+        "popup",
+        "tip"
+      ],
+      "resposta_correta": "popover"
+    },
+    {
+      "id": 70,
+      "tema": "Bootstrap 4",
+      "pergunta": "Como criar listas horizontais?",
+      "opcoes": [
+        "list-inline",
+        "horizontal-list",
+        "list-horizontal"
+      ],
+      "resposta_correta": "list-inline"
+    },
+    {
+      "id": 71,
+      "tema": "Bootstrap 4",
+      "pergunta": "Qual classe cria spinners de carregamento?",
+      "opcoes": [
+        "spinner-border",
+        "loading-spinner",
+        "spinner"
+      ],
+      "resposta_correta": "spinner-border"
+    },
+    {
+      "id": 72,
+      "tema": "Bootstrap 4",
+      "pergunta": "Qual classe fixa um elemento no topo da página?",
+      "opcoes": [
+        "sticky-top",
+        "fixed-top",
+        "top-fixed"
+      ],
+      "resposta_correta": "sticky-top"
+    },
+    {
+      "id": 73,
+      "tema": "Bootstrap 4",
+      "pergunta": "Qual classe cria badges?",
+      "opcoes": [
+        "badge",
+        "label",
+        "tag"
+      ],
+      "resposta_correta": "badge"
+    },
+    {
+      "id": 74,
+      "tema": "Bootstrap 4",
+      "pergunta": "Qual classe cria collapse (elementos expansíveis)?",
+      "opcoes": [
+        "collapse",
+        "expand",
+        "accordion"
+      ],
+      "resposta_correta": "collapse"
+    },
+    {
+      "id": 75,
+      "tema": "Django + Bootstrap",
+      "pergunta": "Como integrar Bootstrap 4 em templates Django?",
+      "opcoes": [
+        "Incluindo CSS e JS no template base",
+        "Configurando no settings.py",
+        "Registrando no urls.py"
+      ],
+      "resposta_correta": "Incluindo CSS e JS no template base"
+    },
+    {
+      "id": 76,
+      "tema": "Django + Bootstrap",
+      "pergunta": "Qual pacote facilita integração de formulários Django com Bootstrap?",
+      "opcoes": [
+        "django-crispy-forms",
+        "django-allauth",
+        "django-rest-framework"
+      ],
+      "resposta_correta": "django-crispy-forms"
+    },
+    {
+      "id": 77,
+      "tema": "Django + Bootstrap",
+      "pergunta": "Como criar formulários inline com Bootstrap no Django?",
+      "opcoes": [
+        "Adicionando classes 'form-inline' no template",
+        "Configurando settings.py",
+        "Usando widgets JSON"
+      ],
+      "resposta_correta": "Adicionando classes 'form-inline' no template"
+    },
+    {
+      "id": 78,
+      "tema": "Django + Bootstrap",
+      "pergunta": "Como exibir mensagens do Django com alertas do Bootstrap?",
+      "opcoes": [
+        "Iterando sobre messages e aplicando classes 'alert alert-?'",
+        "Usando apenas render()",
+        "Configurando no settings.py"
+      ],
+      "resposta_correta": "Iterando sobre messages e aplicando classes 'alert alert-?'"
+    },
+    {
+      "id": 79,
+      "tema": "Django + Bootstrap",
+      "pergunta": "Como exibir dados de QuerySet em tabela Bootstrap?",
+      "opcoes": [
+        "Iterando no template com for e usando classes 'table'",
+        "Configurando urls.py",
+        "Criando um arquivo JS separado"
+      ],
+      "resposta_correta": "Iterando no template com for e usando classes 'table'"
+    },
+    {
+      "id": 80,
+      "tema": "Django + Bootstrap",
+      "pergunta": "Como usar collapse e modals do Bootstrap em views Django?",
+      "opcoes": [
+        "Incluindo atributos data-toggle e data-target no HTML",
+        "Configurando no admin.py",
+        "Chamando funções Python no CSS"
+      ],
+      "resposta_correta": "Incluindo atributos data-toggle e data-target no HTML"
+    },
+    {
+      "id": 81,
+      "tema": "Django + Bootstrap",
+      "pergunta": "Como organizar templates base.html com Bootstrap?",
+      "opcoes": [
+        "Criando um layout base e usando {% block content %}",
+        "Configurando no settings.py",
+        "Colocando todo HTML em views.py"
+      ],
+      "resposta_correta": "Criando um layout base e usando {% block content %}"
+    },
+    {
+      "id": 82,
+      "tema": "Django + Bootstrap",
+      "pergunta": "Como criar dashboards responsivos em Django com Bootstrap?",
+      "opcoes": [
+        "Usando grid system e cards dentro de templates",
+        "Configurando apenas o settings.py",
+        "Criando modelos separados no admin"
+      ],
+      "resposta_correta": "Usando grid system e cards dentro de templates"
+    },
+    {
+      "id": 83,
+      "tema": "Django + Bootstrap",
+      "pergunta": "Como usar breadcrumbs do Bootstrap no Django?",
+      "opcoes": [
+        "Criando lista ordenada <ol> e aplicando 'breadcrumb'",
+        "Configurando urls.py",
+        "Usando apenas CSS customizado"
+      ],
+      "resposta_correta": "Criando lista ordenada <ol> e aplicando 'breadcrumb'"
+    },
+    {
+      "id": 84,
+      "tema": "Django + Bootstrap",
+      "pergunta": "Como implementar paginação Django com Bootstrap?",
+      "opcoes": [
+        "Usando Paginator e classes 'pagination'",
+        "Configurando apenas no settings.py",
+        "Chamando JS externo sem template"
+      ],
+      "resposta_correta": "Usando Paginator e classes 'pagination'"
+    },
+    {
+      "id": 85,
+      "tema": "Bootstrap 4",
+      "pergunta": "Qual classe aplica alinhamento flex horizontal?",
+      "opcoes": [
+        "d-flex",
+        "flex-horizontal",
+        "align-horizontal"
+      ],
+      "resposta_correta": "d-flex"
+    },
+    {
+      "id": 86,
+      "tema": "Bootstrap 4",
+      "pergunta": "Qual classe faz esconder um elemento em telas pequenas?",
+      "opcoes": [
+        "d-none d-sm-block",
+        "hide-xs",
+        "display-none-small"
+      ],
+      "resposta_correta": "d-none d-sm-block"
+    },
+    {
+      "id": 87,
+      "tema": "Bootstrap 4",
+      "pergunta": "Qual classe altera a cor do texto?",
+      "opcoes": [
+        "text-primary",
+        "color-text",
+        "text-color"
+      ],
+      "resposta_correta": "text-primary"
+    },
+    {
+      "id": 88,
+      "tema": "Bootstrap 4",
+      "pergunta": "Qual classe define largura máxima para imagens?",
+      "opcoes": [
+        "img-fluid",
+        "img-max",
+        "responsive-img"
+      ],
+      "resposta_correta": "img-fluid"
+    },
+    {
+      "id": 89,
+      "tema": "Bootstrap 4",
+      "pergunta": "Como criar uma lista de navegação vertical?",
+      "opcoes": [
+        "list-group",
+        "nav-vertical",
+        "nav-list"
+      ],
+      "resposta_correta": "list-group"
+    },
+    {
+      "id": 90,
+      "tema": "Bootstrap 4",
+      "pergunta": "Qual classe aplica cards com cabeçalho e corpo?",
+      "opcoes": [
+        "card-header e card-body",
+        "card-top e card-main",
+        "card-title e card-content"
+      ],
+      "resposta_correta": "card-header e card-body"
+    },
+    {
+      "id": 91,
+      "tema": "Bootstrap 4",
+      "pergunta": "Como criar uma barra de progresso animada?",
+      "opcoes": [
+        "progress-bar progress-bar-striped progress-bar-animated",
+        "bar-animated",
+        "progress-animate"
+      ],
+      "resposta_correta": "progress-bar progress-bar-striped progress-bar-animated"
+    },
+    {
+      "id": 92,
+      "tema": "Django + Bootstrap",
+      "pergunta": "Como validar formulários Django com classes Bootstrap?",
+      "opcoes": [
+        "Adicionando 'is-valid' ou 'is-invalid' dinamicamente no template",
+        "Configurando apenas no settings.py",
+        "Usando JS externo sem template"
+      ],
+      "resposta_correta": "Adicionando 'is-valid' ou 'is-invalid' dinamicamente no template"
+    },
+    {
+      "id": 93,
+      "tema": "Django + Bootstrap",
+      "pergunta": "Como exibir mensagens de erro do formulário com Bootstrap?",
+      "opcoes": [
+        "Iterando sobre form.errors e usando classes 'text-danger'",
+        "Usando apenas render()",
+        "Configurando no urls.py"
+      ],
+      "resposta_correta": "Iterando sobre form.errors e usando classes 'text-danger'"
+    },
+    {
+      "id": 94,
+      "tema": "Django + Bootstrap",
+      "pergunta": "Como deixar campos de formulário lado a lado?",
+      "opcoes": [
+        "Usando classes 'form-row' e 'col'",
+        "Configurando no settings.py",
+        "Chamando JS externo"
+      ],
+      "resposta_correta": "Usando classes 'form-row' e 'col'"
+    },
+    {
+      "id": 95,
+      "tema": "Django + Bootstrap",
+      "pergunta": "Como criar cards dinâmicos com dados do banco?",
+      "opcoes": [
+        "Iterando QuerySet no template e aplicando classes 'card'",
+        "Chamando JS externo",
+        "Configurando apenas no urls.py"
+      ],
+      "resposta_correta": "Iterando QuerySet no template e aplicando classes 'card'"
+    },
+    {
+      "id": 96,
+      "tema": "Django + Bootstrap",
+      "pergunta": "Como criar tabs dinâmicas com dados do Django?",
+      "opcoes": [
+        "Iterando QuerySet e usando classes 'nav-tabs'",
+        "Configurando settings.py",
+        "Usando apenas CSS"
+      ],
+      "resposta_correta": "Iterando QuerySet e usando classes 'nav-tabs'"
+    },
+    {
+      "id": 97,
+      "tema": "Bootstrap 4",
+      "pergunta": "Qual classe adiciona sombras aos elementos?",
+      "opcoes": [
+        "shadow",
+        "box-shadow",
+        "element-shadow"
+      ],
+      "resposta_correta": "shadow"
+    },
+    {
+      "id": 98,
+      "tema": "Bootstrap 4",
+      "pergunta": "Qual classe deixa imagens arredondadas?",
+      "opcoes": [
+        "rounded",
+        "img-circle",
+        "round-img"
+      ],
+      "resposta_correta": "rounded"
+    },
+    {
+      "id": 99,
+      "tema": "Bootstrap 4",
+      "pergunta": "Como criar um layout responsivo com colunas diferentes em telas grandes e pequenas?",
+      "opcoes": [
+        "Usando classes 'col-sm-6 col-lg-4'",
+        "Configurando settings.py",
+        "Usando apenas CSS customizado"
+      ],
+      "resposta_correta": "Usando classes 'col-sm-6 col-lg-4'"
+    },
+    {
+      "id": 100,
+      "tema": "Django + Bootstrap",
+      "pergunta": "Como combinar Django messages com alertas Bootstrap de forma dinâmica?",
+      "opcoes": [
+        "Iterando sobre messages e adicionando classes 'alert alert-{{ message.tags }}'",
+        "Configurando apenas no settings.py",
+        "Chamando JS externo"
+      ],
+      "resposta_correta": "Iterando sobre messages e adicionando classes 'alert alert-{{ message.tags }}'"
+    }
+  ]
+}

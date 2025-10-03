@@ -1,0 +1,195 @@
+{% extends 'estudos/base.html' %}
+
+{% block title %}Guia Completo de Django{% endblock %}
+
+{% block content %}
+  <div class="jumbotron" style="background: linear-gradient(135deg, #092b47 0%, #0a4b7a 100%); color: white;">
+    <h1 class="display-4"><i class="fab fa-python"></i> Guia de Estudos Completo: Django</h1>
+    <p class="lead">Um guia aprofundado com conceitos, arquitetura, exemplos de código e boas práticas do framework Django.</p>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <h2 class="section-title">Conceitos Fundamentais</h2>
+      
+      <div id="django-accordion">
+
+        <div class="card mb-2">
+          <div class="card-header"><h5 class="mb-0"><button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne">Arquitetura MVT (Model, View, Template)</button></h5></div>
+          <div id="collapseOne" class="collapse show" data-parent="#django-accordion">
+            <div class="card-body">
+              <p>O Django popularizou a arquitetura MVT, uma variação do conhecido padrão MVC (Model-View-Controller). A responsabilidade de cada camada é muito bem definida:</p>
+              <ul>
+                <li><strong>Model:</strong> A fonte única e definitiva da verdade sobre seus dados. Representa a estrutura do banco de dados em classes Python. Toda a lógica de negócio que manipula os dados (validações, relacionamentos) deve estar aqui.</li>
+                <li><strong>View:</strong> A "cola" do sistema. Recebe uma requisição HTTP, interage com os Models para buscar ou salvar dados, e decide qual Template será renderizado para o usuário. A lógica de apresentação (como formatar uma data, por exemplo) NÃO deve estar aqui.</li>
+                <li><strong>Template:</strong> A camada de apresentação. É um arquivo (geralmente HTML) que contém a estrutura visual da página. Ele recebe um "contexto" da View (um dicionário de dados) e o exibe dinamicamente para o usuário.</li>
+              </ul>
+              <div class="alert alert-info"><strong>Dica:</strong> Pense no fluxo: O usuário acessa uma URL -> O Django direciona para uma View -> A View busca dados no Model -> A View envia os dados para um Template -> O Template é renderizado como HTML e enviado de volta ao usuário.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-2">
+          <div class="card-header"><h5 class="mb-0"><button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo">Models e o ORM do Django</button></h5></div>
+          <div id="collapseTwo" class="collapse" data-parent="#django-accordion">
+            <div class="card-body">
+              <p>O ORM (Object-Relational Mapper) é uma das maiores vantagens do Django. Ele permite interagir com o banco de dados usando Python puro, sem a necessidade de escrever uma linha de SQL. Cada classe no <code style="color: blue;">models.py</code> herda de <code style="color: orangered">models.Model</code> e representa uma tabela no banco.</p>
+              <h6>Exemplo de Modelos com Relacionamento:</h6>
+              <pre><code># estudos/models.py
+from django.db import models
+from django.contrib.auth.models import User
+
+class Categoria(models.Model):
+    nome = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.nome
+
+class Post(models.Model):
+    titulo = models.CharField(max_length=200)
+    conteudo = models.TextField()
+    data_publicacao = models.DateTimeField(auto_now_add=True)
+    autor = models.ForeignKey(User, on_delete=models.CASCADE)
+    categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return self.titulo</code></pre>
+              <h6>Operações Comuns com o ORM (no shell ou em uma view):</h6>
+              <pre><code># Criar um novo post
+novo_post = Post.objects.create(titulo="Meu Post", conteudo="...", autor=user_obj, categoria=cat_obj)
+
+# Buscar todos os posts
+todos_posts = Post.objects.all()
+
+# Filtrar posts de um autor específico
+posts_do_autor = Post.objects.filter(autor__username="matheus")
+
+# Buscar um post específico pelo ID (pk = primary key)
+post_especifico = Post.objects.get(pk=1)</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-2">
+          <div class="card-header"><h5 class="mb-0"><button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree">URLs e Roteamento</button></h5></div>
+          <div id="collapseThree" class="collapse" data-parent="#django-accordion">
+            <div class="card-body">
+              <p>O Django usa um sistema de roteamento explícito através dos arquivos <code style="color: blue;">urls.py</code>. O projeto tem um <code style="color: blue;">urls.py</code> raiz que pode incluir os arquivos <code style="color: blue;">urls.py</code> de cada aplicativo, mantendo o projeto organizado.</p>
+              <pre><code># core/urls.py (Arquivo Raiz)
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("", include("estudos.urls")), # Inclui as URLs do app 'estudos'
+]
+
+# estudos/urls.py (Arquivo do App)
+from django.urls import path
+from . import views
+
+app_name = "estudos" # Namespace para evitar conflitos
+
+urlpatterns = [
+    path("", views.home, name="home"),
+    path("post/<int:post_id>/", views.detalhe_post, name="detalhe_post"),
+]</code></pre>
+              <div class="alert alert-warning">O parâmetro <code style="color: black;">name</code> na função <code style="color: black;">path()</code> é crucial. Ele permite que você se refira a essa URL de forma única em seus templates (ex: <code style="color: black;">{% verbatim %}{% url 'estudos:detalhe_post' post.id %}{% endverbatim %}</code>), evitando links "hard-coded".</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-2">
+          <div class="card-header"><h5 class="mb-0"><button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour">Views: A Lógica da Aplicação</button></h5></div>
+          <div id="collapseFour" class="collapse" data-parent="#django-accordion">
+            <div class="card-body">
+              <p>As Views podem ser baseadas em Funções (FBV - Function-Based Views) ou em Classes (CBV - Class-Based Views). FBVs são mais simples e diretas, ideais para iniciantes. CBVs são mais reutilizáveis e organizadas, excelentes para lógicas complexas e repetitivas (CRUD - Create, Read, Update, Delete).</p>
+              <h6>Exemplo de Function-Based View (FBV):</h6>
+              <pre><code># estudos/views.py
+from django.shortcuts import render, get_object_or_404
+from .models import Post
+
+def detalhe_post(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    return render(request, 'estudos/detalhe_post.html', {'post': post})</code></pre>
+              <h6>Exemplo de Class-Based View (CBV) para listar posts:</h6>
+              <pre><code># estudos/views.py
+from django.views.generic import ListView
+from .models import Post
+
+class PostListView(ListView):
+    model = Post
+    template_name = 'estudos/lista_posts.html'
+    context_object_name = 'posts' # Nome da variável no template</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-2">
+          <div class="card-header"><h5 class="mb-0"><button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive">Django Admin: A Interface de Administração</button></h5></div>
+          <div id="collapseFive" class="collapse" data-parent="#django-accordion">
+            <div class="card-body">
+              <p>Uma das "killer features" do Django. Ele gera automaticamente uma interface de administração completa e pronta para produção a partir dos seus models. Você só precisa "registrar" seus modelos no arquivo <code style="color: blue;">admin.py</code>.</p>
+              <pre><code># estudos/admin.py
+from django.contrib import admin
+from .models import Categoria, Post
+
+# Registra os modelos para que apareçam no Admin
+admin.site.register(Categoria)
+admin.site.register(Post)</code></pre>
+              <p>Após registrar, rode o servidor e acesse <code style="color: green;">/admin/</code>. Você terá uma interface CRUD completa para gerenciar seus dados.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="sticky-top" style="top: 20px;">
+
+        <div class="card mb-4">
+          <div class="card-header bg-dark text-white"><i class="fas fa-link"></i> Links Úteis</div>
+          <div class="list-group list-group-flush">
+            <a href="https://docs.djangoproject.com/en/stable/" target="_blank" class="list-group-item list-group-item-action font-weight-bold">Documentação Oficial</a>
+            <a href="https://developer.mozilla.org/pt-BR/docs/Learn/Server-side/Django" target="_blank" class="list-group-item list-group-item-action">Guia da MDN</a>
+            <a href="https://awesomedjango.org/" target="_blank" class="list-group-item list-group-item-action">Awesome Django (Pacotes)</a>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-header bg-dark text-white">
+            <i class="fas fa-terminal"></i> Comandos Essenciais
+          </div>
+          <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                  <code style="color: green;">"python manage.py runserver"</code>
+                  <small class="d-block text-muted">Inicia o servidor de desenvolvimento.</small>
+              </li>
+              <li class="list-group-item">
+                  <code style="color: green;">"python manage.py startapp nome"</code>
+                  <small class="d-block text-muted">Cria a estrutura de um novo aplicativo.</small>
+              </li>
+              <li class="list-group-item">
+                  <code style="color: green;">"python manage.py makemigrations"</code>
+                  <small class="d-block text-muted">Cria novos arquivos de migração a partir das alterações nos models.</small>
+              </li>
+              <li class="list-group-item">
+                  <code style="color: green;">"python manage.py migrate"</code>
+                  <small class="d-block text-muted">Aplica as migrações ao banco de dados.</small>
+              </li>
+              <li class="list-group-item">
+                  <code style="color: green;">"python manage.py createsuperuser"</code>
+                  <small class="d-block text-muted">Cria um usuário administrador.</small>
+              </li>
+              <li class="list-group-item">
+                  <code style="color: green;">"python manage.py shell"</code>
+                  <small class="d-block text-muted">Abre o console interativo do Python com o ambiente do projeto carregado.</small>
+              </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+    </div>
+{% endblock %}

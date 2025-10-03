@@ -1,0 +1,290 @@
+{% extends 'estudos/base.html' %}
+{% load static %}
+
+{% block title %}Atividades Interativas{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/theme/material-darker.min.css">
+  <style>
+    /* Estilos para o Playground e Desafio */
+    .playground-container { display: flex; height: 65vh; }
+    .editor-pane, .preview-pane { width: 50%; height: 100%; }
+    .preview-pane iframe { width: 100%; height: 100%; border: 1px solid #ccc; background: white; }
+    .CodeMirror { height: 100% !important; border: 1px solid #ccc; font-size: 15px; }
+
+    /* Estilos para o Quiz Aprimorado */
+    .quiz-container { min-height: 400px; }
+    .question-block { margin-bottom: 25px; }
+    .option-label { display: block; padding: 15px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s ease-in-out; }
+    .option-label:hover { background-color: #f8f9fa; }
+    .option-label.correct { border-color: #28a745; background-color: #d4edda; }
+    .option-label.incorrect { border-color: #dc3545; background-color: #f8d7da; }
+    .option-label.correct, .option-label.incorrect { animation: flash-green 0.5s ease; }
+    .option-label.incorrect { animation-name: shake; }
+
+    @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 50% { transform: translateX(5px); } 75% { transform: translateX(-5px); } }
+    @keyframes flash-green { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    .form-check-input { display: none; }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <div class="jumbotron pb-4"><h1 class="display-4"><i class="fas fa-vial"></i> Atividades Interativas</h1><p class="lead">Teste seus conhecimentos com atividades práticas e desafios de múltipla escolha.</p></div>
+
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item"><a class="nav-link active" id="playground-tab" data-toggle="tab" href="#playground" role="tab">Playground</a></li>
+    <li class="nav-item"><a class="nav-link" id="quiz-tab" data-toggle="tab" href="#quiz" role="tab">Quiz</a></li>
+    <li class="nav-item"><a class="nav-link" id="challenge-tab" data-toggle="tab" href="#challenge" role="tab">Complete o Código</a></li>
+  </ul>
+
+  <div class="tab-content" id="myTabContent">
+    
+    <div class="tab-pane fade show active" id="playground" role="tabpanel">
+        <div class="p-3 border border-top-0">
+            <p>Escreva seu código HTML com classes do Bootstrap 4 na caixa à esquerda e veja o resultado ao vivo à direita.</p>
+            <div class="playground-container">
+                <div class="editor-pane">
+                    <textarea id="code-editor-playground"><div class="container mt-3">
+<h3>Teste o Grid System</h3>
+<div class="row text-center text-white">
+    <div class="col-sm-4 bg-primary p-3">Coluna 1</div>
+    <div class="col-sm-8 bg-success p-3">Coluna 2</div>
+</div>
+
+<h3 class="mt-4">Teste Botões e Alertas</h3>
+<button class="btn btn-danger">Botão de Perigo</button>
+<div class="alert alert-info mt-3">
+    Isto é um alerta!
+</div>
+</div></textarea>
+                </div>
+                <div class="preview-pane"><iframe id="preview-iframe-playground"></iframe></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="quiz" role="tabpanel">
+        <div class="p-4 border border-top-0">
+            <div id="quiz-start-screen">
+                <h3 class="section-title">Quiz Rápido sobre Django e Bootstrap</h3>
+                <p>Teste seus conhecimentos com 4 perguntas aleatórias. As respostas terão feedback instantâneo!</p>
+                <button id="start-quiz-btn" class="btn btn-primary btn-lg mt-3">Começar Quiz!</button>
+            </div>
+            <div id="quiz-main-screen" style="display: none;">
+                <div class="progress mb-4" style="height: 20px;"><div id="quiz-progress-bar" class="progress-bar" role="progressbar" style="width: 0%;">0%</div></div>
+                <div id="quiz-questions-container" class="quiz-container"></div>
+                <div id="quiz-results" class="mt-4 text-center" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="challenge" role="tabpanel">
+        <div class="p-3 border border-top-0">
+          <div class="alert alert-primary">
+            <h5><i class="fas fa-bullseye"></i> Desafio: O Grid Responsivo</h5>
+            <p class="mb-0">O objetivo é fazer os 3 boxes abaixo ficarem lado a lado (ocupando o mesmo espaço) em telas médias (<code>md</code>) ou maiores. Em telas pequenas, eles devem empilhar verticalmente. Use as classes de grid do Bootstrap 4 para resolver!</p>
+          </div>
+          <div class="playground-container">
+            <div class="editor-pane">
+              <textarea id="code-editor-challenge">
+<div class="container-fluid pt-3">
+  <div class="row text-center text-white">
+    <div class="bg-primary p-5 my-2">BOX 1</div>
+    <div class="bg-success p-5 my-2">BOX 2</div>
+    <div class="bg-danger p-5 my-2">BOX 3</div>
+  </div>
+</div>
+              </textarea>
+            </div>
+            <div class="preview-pane">
+              <iframe id="preview-iframe-challenge"></iframe>
+            </div>
+          </div>
+          <div class="mt-3">
+              <button id="show-solution-btn" class="btn btn-info">Mostrar Solução</button>
+              <div id="solution-container" class="mt-3" style="display: none;">
+                  <h5>Solução:</h5>
+                  <pre><code>&lt;div class="row text-center text-white"&gt;
+  &lt;div class="col-md-4 bg-primary p-5 my-2"&gt;BOX 1&lt;/div&gt;
+  &lt;div class="col-md-4 bg-success p-5 my-2"&gt;BOX 2&lt;/div&gt;
+  &lt;div class="col-md-4 bg-danger p-5 my-2"&gt;BOX 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+              </div>
+          </div>
+        </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/xml/xml.min.js"></script>
+  
+  <script>
+    // =================================================================
+    // ===== INICIALIZAÇÃO GERAL E VARIÁVEIS ===========================
+    // =================================================================
+    let playgroundEditor = null;
+    let challengeEditor = null;
+
+    // =================================================================
+    // ===== LÓGICA DA ABA "PLAYGROUND" ================================
+    // =================================================================
+    function setupPlayground() {
+        if (playgroundEditor) return;
+        playgroundEditor = CodeMirror.fromTextArea(document.getElementById('code-editor-playground'), { mode: 'xml', theme: 'material-darker', lineNumbers: true });
+        const previewFrame = document.getElementById('preview-iframe-playground');
+        function updatePreview() {
+            const code = playgroundEditor.getValue();
+            const previewContent = `<!DOCTYPE html><html lang="pt-BR"><head><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"><style>body { padding: 15px; }</style></head><body>${code}</body></html>`;
+            previewFrame.srcdoc = previewContent;
+        }
+        playgroundEditor.on('change', updatePreview);
+        updatePreview();
+    }
+    
+    // =================================================================
+    // ===== LÓGICA DA ABA "COMPLETE O CÓDIGO" =========================
+    // =================================================================
+    function setupChallenge() {
+        if (challengeEditor) return;
+        challengeEditor = CodeMirror.fromTextArea(document.getElementById('code-editor-challenge'), { mode: 'xml', theme: 'material-darker', lineNumbers: true });
+        const previewFrame = document.getElementById('preview-iframe-challenge');
+        function updatePreview() {
+            const code = challengeEditor.getValue();
+            const previewContent = `<!DOCTYPE html><html lang="pt-BR"><head><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"><style>body { padding: 15px; }</style></head><body>${code}</body></html>`;
+            previewFrame.srcdoc = previewContent;
+        }
+        challengeEditor.on('change', updatePreview);
+        updatePreview();
+        document.getElementById('show-solution-btn').addEventListener('click', () => {
+            document.getElementById('solution-container').style.display = 'block';
+        });
+    }
+
+    // =================================================================
+    // ===== LÓGICA DA ABA "QUIZ" ======================================
+    // =================================================================
+    const startBtn = document.getElementById('start-quiz-btn');
+    const startScreen = document.getElementById('quiz-start-screen');
+    const mainScreen = document.getElementById('quiz-main-screen');
+    const questionsContainer = document.getElementById('quiz-questions-container');
+    const resultsDiv = document.getElementById('quiz-results');
+    const progressBar = document.getElementById('quiz-progress-bar');
+    const quizTabPane = document.getElementById('quiz');
+    let currentQuestions = [];
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    if (startBtn) {
+      startBtn.addEventListener('click', loadQuiz);
+    }
+
+    async function loadQuiz() {
+      startScreen.style.display = 'none';
+      mainScreen.style.display = 'block';
+      resultsDiv.style.display = 'none';
+      questionsContainer.innerHTML = `<div class="text-center p-5"><div class="spinner-border text-primary" role="status"><span class="sr-only">Carregando...</span></div></div>`;
+      try {
+        const apiUrl = document.getElementById('quiz').dataset.apiUrl || "{% url 'estudos:quiz_api' %}";
+        const response = await fetch(apiUrl);
+        if (!response.ok) { throw new Error('A resposta da API não foi bem-sucedida.'); }
+        currentQuestions = await response.json();
+        currentQuestionIndex = 0;
+        score = 0;
+        showQuestion();
+      } catch (error) {
+        questionsContainer.innerHTML = `<div class="alert alert-danger">Erro ao carregar as perguntas. Tente novamente.</div>`;
+        console.error("Erro no fetch:", error);
+      }
+    }
+
+    function showQuestion() {
+      if (currentQuestionIndex >= currentQuestions.length) {
+        showFinalResults();
+        return;
+      }
+      const qData = currentQuestions[currentQuestionIndex];
+      
+      // Embaralha as opções antes de exibi-las
+      const shuffledOptions = [...qData.options].sort(() => 0.5 - Math.random());
+      
+      const optionsHtml = shuffledOptions.map(option => `<label class="option-label"><input class="form-check-input" type="radio" name="option" value="${option.id}">${option.text}</label>`).join('');
+      questionsContainer.innerHTML = `<div class="question-block"><h4>${currentQuestionIndex + 1}. ${qData.text}</h4><div class="options-container">${optionsHtml}</div></div><button id="next-q-btn" class="btn btn-secondary mt-3" style="display: none;">Próxima Pergunta</button>`;
+      updateProgressBar();
+      document.querySelectorAll('.option-label').forEach(label => {
+        label.addEventListener('click', selectAnswer);
+      });
+      document.getElementById('next-q-btn').addEventListener('click', () => {
+        currentQuestionIndex++;
+        showQuestion();
+      });
+    }
+
+    function selectAnswer(event) {
+      const selectedLabel = event.currentTarget;
+      const selectedInput = selectedLabel.querySelector('input');
+      const userAnswerId = parseInt(selectedInput.value);
+      const correctAnswerId = currentQuestions[currentQuestionIndex].correct_answer_id;
+      document.querySelectorAll('.option-label').forEach(label => {
+        label.removeEventListener('click', selectAnswer);
+        label.style.cursor = 'default';
+      });
+      if (userAnswerId === correctAnswerId) {
+        selectedLabel.classList.add('correct');
+        score++;
+      } else {
+        selectedLabel.classList.add('incorrect');
+        const correctLabel = document.querySelector(`input[value="${correctAnswerId}"]`).parentElement;
+        correctLabel.classList.add('correct');
+      }
+      document.getElementById('next-q-btn').style.display = 'block';
+    }
+
+    function updateProgressBar() {
+        const progress = ((currentQuestionIndex) / currentQuestions.length) * 100;
+        progressBar.style.width = `${progress}%`;
+        progressBar.innerText = `${progress.toFixed(0)}%`;
+    }
+
+    function showFinalResults() {
+        progressBar.style.width = `100%`;
+        progressBar.innerText = `100%`;
+        let message = '';
+        const percentage = (score / currentQuestions.length) * 100;
+        if (percentage === 100) {
+            message = '<h3>Excelente! Você gabaritou! 🚀</h3><p>Seu conhecimento está afiado.</p>';
+        } else if (percentage >= 75) {
+            message = `<h3>Muito bom! ${score} de ${currentQuestions.length} acertos.</h3><p>Você está no caminho certo!</p>`;
+        } else {
+            message = `<h3>Continue estudando! ${score} de ${currentQuestions.length} acertos.</h3><p>Revisar os conceitos vai te ajudar a fixar o conhecimento.</p>`;
+        }
+        questionsContainer.innerHTML = '';
+        resultsDiv.innerHTML = `<div class="card text-center"><div class="card-body">${message}<button id="restart-quiz-btn" class="btn btn-primary mt-3">Jogar Novamente</button></div></div>`;
+        resultsDiv.style.display = 'block';
+        document.getElementById('restart-quiz-btn').addEventListener('click', loadQuiz);
+    }
+    
+    // =================================================================
+    // ===== GERENCIADOR DAS ABAS (TABS) ===============================
+    // =================================================================
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+      const targetTabId = e.target.id;
+      if (targetTabId === 'playground-tab') {
+        if (!playgroundEditor) setupPlayground();
+        playgroundEditor.refresh();
+      } else if (targetTabId === 'quiz-tab') {
+        // A lógica de carregar o quiz agora é iniciada pelo botão "Começar Quiz!"
+      } else if (targetTabId === 'challenge-tab') {
+        if (!challengeEditor) setupChallenge();
+        challengeEditor.refresh();
+      }
+    });
+
+    // Inicializa a primeira aba ativa ao carregar a página
+    document.addEventListener('DOMContentLoaded', (event) => {
+        setupPlayground();
+    });
+  </script>
+{% endblock %}
