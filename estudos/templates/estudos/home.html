@@ -1,136 +1,307 @@
-
 {% extends 'estudos/base.html' %}
 
 {% block title %}Home - Sistema de Estudos{% endblock %}
 
 {% block content %}
-<div class="text-center mb-5">
-    <h1 class="display-4">
+<!-- Hero Section -->
+<div class="jumbotron bg-gradient text-center mb-5">
+    <h1 class="display-3">
         <i class="fas fa-graduation-cap text-primary"></i>
-        Bem-vindo ao Sistema de Estudos
+        Sistema de Estudos
     </h1>
-    <p class="lead text-muted">Seu roteiro completo para dominar desenvolvimento web</p>
+    <p class="lead">Seu roteiro completo para dominar desenvolvimento web com Django, Bootstrap e APIs essenciais</p>
+    <hr class="my-4">
+    <p>Navegue pelo menu acima para acessar cada módulo de estudo ou use a busca para encontrar tópicos específicos</p>
 </div>
 
-<div class="row">
-    <!-- Card Django -->
-    <div class="col-md-6 col-lg-4 mb-4">
-        <div class="card border-primary">
-            <div class="card-body text-center">
-                <i class="fab fa-python fa-3x text-primary mb-3"></i>
-                <h5 class="card-title">Django Framework</h5>
-                <p class="card-text">
-                    Aprenda sobre estrutura, MVT, ORM, views, templates e muito mais.
-                </p>
-                <a href="{% url 'estudos:django' %}" class="btn btn-primary btn-block">
-                    <i class="fas fa-book-open"></i> Estudar Django
-                </a>
+<!-- Estatísticas Rápidas -->
+<div class="row mb-5">
+    <div class="col-lg-10 mx-auto">
+        <div class="row text-center">
+            <div class="col-md-3 col-6 mb-3">
+                <div class="card border-primary">
+                    <div class="card-body">
+                        <i class="fab fa-python fa-2x text-primary mb-2"></i>
+                        <h3 class="mb-0">Django</h3>
+                        <small class="text-muted">Framework Backend</small>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Card Bootstrap 4 -->
-    <div class="col-md-6 col-lg-4 mb-4">
-        <div class="card border-info">
-            <div class="card-body text-center">
-                <i class="fab fa-bootstrap fa-3x text-info mb-3"></i>
-                <h5 class="card-title">Bootstrap 4</h5>
-                <p class="card-text">
-                    Domine o framework CSS mais popular para criar interfaces responsivas.
-                </p>
-                <a href="{% url 'estudos:bootstrap' %}" class="btn btn-info btn-block">
-                    <i class="fas fa-book-open"></i> Estudar Bootstrap
-                </a>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="card border-info">
+                    <div class="card-body">
+                        <i class="fab fa-bootstrap fa-2x text-info mb-2"></i>
+                        <h3 class="mb-0">Bootstrap</h3>
+                        <small class="text-muted">Framework CSS</small>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Card RD Station -->
-    <div class="col-md-6 col-lg-4 mb-4">
-        <div class="card border-success">
-            <div class="card-body text-center">
-                <i class="fas fa-chart-line fa-3x text-success mb-3"></i>
-                <h5 class="card-title">API RD Station</h5>
-                <p class="card-text">
-                    Integre seu sistema com a plataforma de Marketing Digital RD Station.
-                </p>
-                <a href="{% url 'estudos:rd_station' %}" class="btn btn-success btn-block">
-                    <i class="fas fa-book-open"></i> Estudar RD Station
-                </a>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="card border-success">
+                    <div class="card-body">
+                        <i class="fas fa-chart-line fa-2x text-success mb-2"></i>
+                        <h3 class="mb-0">RD Station</h3>
+                        <small class="text-muted">Marketing API</small>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Card D4Sign -->
-    <div class="col-md-6 col-lg-4 mb-4">
-        <div class="card border-warning">
-            <div class="card-body text-center">
-                <i class="fas fa-file-signature fa-3x text-warning mb-3"></i>
-                <h5 class="card-title">API D4Sign</h5>
-                <p class="card-text">
-                    Aprenda a integrar assinaturas digitais em suas aplicações.
-                </p>
-                <a href="{% url 'estudos:d4sign' %}" class="btn btn-warning btn-block">
-                    <i class="fas fa-book-open"></i> Estudar D4Sign
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Card Recursos -->
-    <div class="col-md-6 col-lg-4 mb-4">
-        <div class="card border-secondary">
-            <div class="card-body text-center">
-                <i class="fas fa-tools fa-3x text-secondary mb-3"></i>
-                <h5 class="card-title">Recursos Extras</h5>
-                <p class="card-text">
-                    Documentação, links úteis e referências para aprofundar seus estudos.
-                </p>
-                <a href="#recursos" class="btn btn-secondary btn-block">
-                    <i class="fas fa-link"></i> Ver Recursos
-                </a>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="card border-warning">
+                    <div class="card-body">
+                        <i class="fas fa-file-signature fa-2x text-warning mb-2"></i>
+                        <h3 class="mb-0">D4Sign</h3>
+                        <small class="text-muted">Assinaturas API</small>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Seção de Recursos -->
-<div id="recursos" class="mt-5">
-    <h2 class="section-title">
-        <i class="fas fa-link"></i> Recursos Úteis
+<!-- Guia de Estudos -->
+<div class="mb-5">
+    <h2 class="section-title mb-4">
+        <i class="fas fa-route"></i> Por Onde Começar?
     </h2>
     <div class="row">
-        <div class="col-md-6">
-            <div class="card mb-3">
+        <div class="col-lg-6 mb-4">
+            <div class="card h-100 border-primary">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-seedling"></i> Iniciante</h5>
+                </div>
+                <div class="card-body">
+                    <ol class="mb-0">
+                        <li class="mb-2">
+                            <strong>Bootstrap 4</strong> - Aprenda a criar interfaces responsivas
+                            <br><small class="text-muted">Grid System, Componentes, Utilitários</small>
+                        </li>
+                        <li class="mb-2">
+                            <strong>Django - Fundamentos</strong> - Entenda MVT e estrutura
+                            <br><small class="text-muted">URLs, Views, Templates, Static Files</small>
+                        </li>
+                        <li>
+                            <strong>Django - ORM</strong> - Trabalhe com banco de dados
+                            <br><small class="text-muted">Models, Migrations, QuerySets</small>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 mb-4">
+            <div class="card h-100 border-success">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0"><i class="fas fa-rocket"></i> Avançado</h5>
+                </div>
+                <div class="card-body">
+                    <ol class="mb-0">
+                        <li class="mb-2">
+                            <strong>Django - Forms e Admin</strong> - Interfaces dinâmicas
+                            <br><small class="text-muted">ModelForms, Validações, Customização</small>
+                        </li>
+                        <li class="mb-2">
+                            <strong>RD Station API</strong> - Integração de Marketing
+                            <br><small class="text-muted">Conversões, Leads, Automação</small>
+                        </li>
+                        <li>
+                            <strong>D4Sign API</strong> - Assinaturas digitais
+                            <br><small class="text-muted">Documentos, Webhooks, Certificados</small>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Visão Geral dos Módulos -->
+<div class="mb-5">
+    <h2 class="section-title mb-4">
+        <i class="fas fa-book-open"></i> Visão Geral dos Módulos
+    </h2>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">
-                        <i class="fas fa-book"></i> Documentações Oficiais
+                        <i class="fab fa-python text-primary"></i> Django Framework
                     </h5>
-                    <ul class="list-unstyled">
-                        <li><a href="https://docs.djangoproject.com/" target="_blank">→ Django Docs</a></li>
-                        <li><a href="https://getbootstrap.com/docs/4.6/" target="_blank">→ Bootstrap 4 Docs</a></li>
-                        <li><a href="https://developers.rdstation.com/reference/api-rd-station-doc" target="_blank">→ RD Station API</a></li>
-                        <li><a href="https://docapi.d4sign.com.br/" target="_blank">→ D4Sign API</a></li>
+                    <p class="card-text text-muted small mb-2">Framework Python para web</p>
+                    <ul class="small mb-0">
+                        <li>Estrutura MVT e configuração</li>
+                        <li>ORM e banco de dados</li>
+                        <li>Templates e Static Files</li>
+                        <li>Forms e validações</li>
+                        <li>Admin customizado</li>
+                        <li>Autenticação e permissões</li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="card mb-3">
+
+        <div class="col-md-6 mb-3">
+            <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">
-                        <i class="fas fa-lightbulb"></i> Dicas de Estudo
+                        <i class="fab fa-bootstrap text-info"></i> Bootstrap 4
                     </h5>
-                    <ul>
-                        <li>Pratique todos os dias</li>
-                        <li>Construa projetos reais</li>
-                        <li>Leia documentação oficial</li>
-                        <li>Participe de comunidades</li>
-                        <li>Use o chatbot para dúvidas</li>
+                    <p class="card-text text-muted small mb-2">Framework CSS responsivo</p>
+                    <ul class="small mb-0">
+                        <li>Sistema de Grid responsivo</li>
+                        <li>Componentes (Cards, Navbar, etc)</li>
+                        <li>Utilitários e helpers</li>
+                        <li>Formulários estilizados</li>
+                        <li>JavaScript plugins</li>
+                        <li>Customização com SASS</li>
                     </ul>
                 </div>
             </div>
         </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="fas fa-chart-line text-success"></i> API RD Station
+                    </h5>
+                    <p class="card-text text-muted small mb-2">Plataforma de Marketing Digital</p>
+                    <ul class="small mb-0">
+                        <li>Autenticação OAuth 2.0</li>
+                        <li>Gerenciamento de conversões</li>
+                        <li>Criação e edição de leads</li>
+                        <li>Integração com funis</li>
+                        <li>Webhooks e automações</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="fas fa-file-signature text-warning"></i> API D4Sign
+                    </h5>
+                    <p class="card-text text-muted small mb-2">Assinaturas digitais e eletrônicas</p>
+                    <ul class="small mb-0">
+                        <li>Upload de documentos</li>
+                        <li>Configuração de signatários</li>
+                        <li>Envio para assinatura</li>
+                        <li>Webhooks de status</li>
+                        <li>Download de documentos assinados</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recursos Úteis -->
+<div class="mb-5">
+    <h2 class="section-title mb-4">
+        <i class="fas fa-toolbox"></i> Recursos e Links Úteis
+    </h2>
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="fas fa-book text-primary"></i> Documentações
+                    </h5>
+                    <ul class="list-unstyled small">
+                        <li class="mb-1">
+                            <a href="https://docs.djangoproject.com/" target="_blank" rel="noopener">
+                                <i class="fas fa-external-link-alt"></i> Django Docs
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="https://getbootstrap.com/docs/4.6/" target="_blank" rel="noopener">
+                                <i class="fas fa-external-link-alt"></i> Bootstrap 4 Docs
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="https://developers.rdstation.com/reference/api-rd-station-doc" target="_blank" rel="noopener">
+                                <i class="fas fa-external-link-alt"></i> RD Station API
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://docapi.d4sign.com.br/" target="_blank" rel="noopener">
+                                <i class="fas fa-external-link-alt"></i> D4Sign API
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="fas fa-lightbulb text-warning"></i> Dicas de Estudo
+                    </h5>
+                    <ul class="small mb-0">
+                        <li>Estude um tópico por vez</li>
+                        <li>Pratique com exemplos reais</li>
+                        <li>Faça anotações dos conceitos</li>
+                        <li>Teste o código na prática</li>
+                        <li>Revise periodicamente</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="fas fa-code text-success"></i> Ferramentas
+                    </h5>
+                    <ul class="list-unstyled small">
+                        <li class="mb-1">
+                            <a href="https://www.python.org/" target="_blank" rel="noopener">
+                                <i class="fas fa-external-link-alt"></i> Python.org
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">
+                                <i class="fas fa-external-link-alt"></i> VS Code
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="https://github.com/" target="_blank" rel="noopener">
+                                <i class="fas fa-external-link-alt"></i> GitHub
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://stackoverflow.com/" target="_blank" rel="noopener">
+                                <i class="fas fa-external-link-alt"></i> Stack Overflow
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Call to Action -->
+<div class="text-center py-5 bg-light rounded">
+    <h3 class="mb-3">Pronto para começar?</h3>
+    <p class="text-muted mb-4">Use o menu de navegação acima para acessar qualquer módulo de estudo</p>
+    <div class="btn-group" role="group">
+        <a href="{% url 'estudos:django' %}" class="btn btn-primary">
+            <i class="fab fa-python"></i> Django
+        </a>
+        <a href="{% url 'estudos:bootstrap' %}" class="btn btn-info">
+            <i class="fab fa-bootstrap"></i> Bootstrap
+        </a>
+        <a href="{% url 'estudos:rd_station' %}" class="btn btn-success">
+            <i class="fas fa-chart-line"></i> RD Station
+        </a>
+        <a href="{% url 'estudos:d4sign' %}" class="btn btn-warning">
+            <i class="fas fa-file-signature"></i> D4Sign
+        </a>
     </div>
 </div>
 {% endblock %}
