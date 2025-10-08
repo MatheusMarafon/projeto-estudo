@@ -884,7 +884,7 @@
     {
       "id": 81,
       "tema": "Django + Bootstrap",
-      "pergunta": "Como organizar templates base.html com Bootstrap?",
+      "pergunta": "Como organizar templates index.html com Bootstrap?",
       "opcoes": [
         "Criando um layout base e usando {% block content %}",
         "Configurando no settings.py",
